@@ -473,57 +473,10 @@
                 </div>
             </div>
 
-            <!-- Dynamic Tracking Result -->
-            <div id="trackingResult" class="p-6 bg-slate-50/80 dark:bg-navy-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-semibold text-slate-400 block">رقم الطلب المرجعي</span>
-                        <span id="resTrackId" class="text-lg font-black text-brand-700 dark:text-emerald-400 tracking-wider">---</span>
-                    </div>
-                    <div>
-                        <span class="text-xs font-semibold text-slate-400 block">نوع الخدمة المحددة</span>
-                        <span id="resServiceType" class="text-sm font-bold text-slate-800 dark:text-slate-200">اختر خدمة واستعلم</span>
-                    </div>
-                    <div>
-                        <span class="text-xs font-semibold text-slate-400 block">تاريخ / حالة الطلب</span>
-                        <span id="resDate" class="text-sm font-medium text-slate-600 dark:text-slate-300">---</span>
-                    </div>
-                </div>
-
-                <div class="pt-4 pb-2">
-                    <div id="stepperContainer" class="relative flex items-center justify-between max-w-3xl mx-auto opacity-50">
-                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-200 dark:bg-slate-700 z-0"></div>
-                        <div id="progressFill" class="absolute right-0 top-1/2 -translate-y-1/2 h-1 bg-brand-600 transition-all duration-500 z-0" style="width: 0%;"></div>
-
-                        <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">
-                                1
-                            </div>
-                            <span class="text-xs font-bold text-slate-500">إيداع الملف</span>
-                        </div>
-
-                        <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                2
-                            </div>
-                            <span class="text-xs font-semibold text-slate-400">قيد الدراسة</span>
-                        </div>
-
-                        <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                3
-                            </div>
-                            <span class="text-xs font-semibold text-slate-400">موافقة اللجنة</span>
-                        </div>
-
-                        <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                4
-                            </div>
-                            <span class="text-xs font-semibold text-slate-400">جاهزية القرار</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Dynamic Tracking Result (Affiche UNIQUEMENT حالة الطلب) -->
+            <div id="trackingResult" class="p-6 bg-slate-50/80 dark:bg-navy-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 text-center">
+                <span class="text-xs font-semibold text-slate-400 block mb-1">حالة الطلب</span>
+                <span id="resDate" class="text-lg font-bold text-slate-800 dark:text-slate-100">---</span>
             </div>
         </section>
 
@@ -647,6 +600,7 @@
     <script>
         let isAdminLoggedIn = false;
 
+        // Spreadsheets CSV Export URLs Direct Links
         const sheetUrls = {
             'conge': 'https://docs.google.com/spreadsheets/d/1mpCiXJcrkgAXh85fFsNHI4MLptXxFGSSymnoNtGafyA/export?format=csv',
             'reintegration': 'https://docs.google.com/spreadsheets/d/1TAfgtauM30GAdakaEy2eLrrxFIadd97exZZazwPQ_0M/export?format=csv',
@@ -681,7 +635,6 @@
             e.preventDefault();
             const inputPwd = document.getElementById('adminPasswordInput').value;
 
-            // Direct strict verification
             if (inputPwd === 'DIRNUM2027@@') {
                 isAdminLoggedIn = true;
                 localStorage.setItem('adminSession', 'true');
@@ -891,30 +844,15 @@
                     }
                 }
 
-                document.getElementById('resTrackId').innerText = trackVal.toUpperCase();
-                document.getElementById('resServiceType').innerText = selectedServiceText;
-                const stepper = document.getElementById('stepperContainer');
-                const progressFill = document.getElementById('progressFill');
+                const resDateEl = document.getElementById('resDate');
 
                 if (found) {
                     showToast(`تم العثور على ملفك في خدمة (${selectedServiceText})`, 'success');
-                    
                     const statusText = rowData[rowData.length - 1] || 'قيد الدراسة البيداغوجية';
-                    document.getElementById('resDate').innerText = statusText;
-
-                    stepper.classList.remove('opacity-50');
-                    if (statusText.includes('مقبول') || statusText.includes('جاهز') || statusText.includes('تم')) {
-                        progressFill.style.width = '100%';
-                    } else if (statusText.includes('موافقة')) {
-                        progressFill.style.width = '66%';
-                    } else {
-                        progressFill.style.width = '33%';
-                    }
+                    resDateEl.innerText = statusText;
                 } else {
                     showToast(`لم يتم العثور على نتائج مطابقة لـ (${trackVal}) في هذه الخدمة`, 'error');
-                    document.getElementById('resDate').innerText = 'غير مسجل أو قيد المعالجة الأولية';
-                    stepper.classList.add('opacity-50');
-                    progressFill.style.width = '0%';
+                    resDateEl.innerText = 'غير مسجل أو قيد المعالجة الأولية';
                 }
 
             } catch (error) {
