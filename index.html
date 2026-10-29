@@ -584,7 +584,7 @@
                         <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
                     </summary>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        الحضور إجباري في الأعمال التطبيقية والأعمال الموجهة. تؤدي التغيب غير المبرر لأكثر من ثلاث حصص (أو غيابين غير مبررين في المادة الواحدة) إلى معاقبة الطالب بالحرمان من الامتحان الخاص بالمادة المعنية للسداسي الجاري وتسجيل علامة صفر.
+                        الحضور إجباري في الأعمال التطبيقية والأعمال الموجهة. يؤدي التغيب غير المبرر لأكثر من ثلاث حصص (أو غيابين غير مبررين في المادة الواحدة) إلى معاقبة الطالب بالحرمان من الامتحان الخاص بالمادة المعنية للسداسي الجاري وتسجيل علامة صفر.
                     </p>
                 </details>
             </div>
@@ -628,9 +628,8 @@
                     <h4 class="text-sm font-bold text-white mb-3">تابعنا</h4>
                     <div class="flex gap-3">
                         <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <!-- Secret Admin Button (Discreet Blue Square) -->
-                        <button onclick="openAdminModal()" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700/80 transition cursor-pointer" aria-label="Secret Button"></button>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <!-- Secret Admin Trigger: Completely Invisible Square Matched with Footer BG -->
+                        <button onclick="openAdminModal()" class="w-9 h-9 rounded-xl bg-slate-900 border-none outline-none focus:outline-none cursor-default" aria-label="System Access"></button>
                     </div>
                 </div>
             </div>
@@ -646,11 +645,11 @@
 
     <!-- JavaScript App Logic -->
     <script>
-        // Encrypted hash for password "DIRNUM2027@@"
-        const ADMIN_HASH = '62b78b5ce24cfa9cd4eebcd8fc6fccf338d8fb029d5b0c9fe10c4d9bc2b8265a';
+        // Salted multi-stage hash verification
+        const S_VAL = "UCBET_SALT_2026_PRO";
+        const KEY_SIG = "a971d8be8d5d4193eb77efbdfbfd27d70bf0fa93ec52dd9cd1c3ec6fbe92a341";
         let isAdminLoggedIn = false;
 
-        // Links to Google Spreadsheets CSV Exports
         const sheetUrls = {
             'conge': 'https://docs.google.com/spreadsheets/d/1mpCiXJcrkgAXh85fFsNHI4MLptXxFGSSymnoNtGafyA/export?format=csv',
             'reintegration': 'https://docs.google.com/spreadsheets/d/1TAfgtauM30GAdakaEy2eLrrxFIadd97exZZazwPQ_0M/export?format=csv',
@@ -667,15 +666,16 @@
             'bac': 'https://ucbet36.github.io/bac/'
         };
 
-        // SHA-256 Hashing helper function
-        async function sha256(str) {
-            const buffer = new TextEncoder().encode(str);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        async function verifyKey(input) {
+            const encoder = new TextEncoder();
+            let data = encoder.encode(input + S_VAL);
+            for (let i = 0; i < 50; i++) {
+                const hashBuf = await crypto.subtle.digest('SHA-256', data);
+                data = new Uint8Array(hashBuf);
+            }
+            return Array.from(data).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // Modal Controls
         function openAdminModal() {
             if (isAdminLoggedIn) {
                 showToast('أنت مسجل الدخول بالفعل كـ مشرف', 'info');
@@ -692,10 +692,10 @@
 
         async function handleAdminAuth(e) {
             e.preventDefault();
-            const inputPwd = document.getElementById('adminPasswordInput').value.trim();
-            const hashedInput = await sha256(inputPwd);
+            const inputPwd = document.getElementById('adminPasswordInput').value;
+            const hashedInput = await verifyKey(inputPwd);
 
-            if (hashedInput === ADMIN_HASH) {
+            if (hashedInput === KEY_SIG) {
                 isAdminLoggedIn = true;
                 localStorage.setItem('adminSession', 'true');
                 showAdminControls();
@@ -721,7 +721,6 @@
             showToast('تم تسجيل الخروج من حساب المشرف', 'info');
         }
 
-        // Persistent Status Management with LocalStorage
         function loadSavedServiceStatuses() {
             const savedStatuses = JSON.parse(localStorage.getItem('serviceStatuses')) || {};
             for (const [key, status] of Object.entries(savedStatuses)) {
@@ -761,10 +760,8 @@
             const isCurrentlyOpen = badge.innerText.includes('مفتوح');
             const newStatus = isCurrentlyOpen ? 'closed' : 'open';
 
-            // Apply new UI state
             applyServiceStatus(serviceKey, newStatus);
 
-            // Persist choice in LocalStorage
             const savedStatuses = JSON.parse(localStorage.getItem('serviceStatuses')) || {};
             savedStatuses[serviceKey] = newStatus;
             localStorage.setItem('serviceStatuses', JSON.stringify(savedStatuses));
@@ -776,12 +773,10 @@
             }
         }
 
-        // Automatic Status Monitoring Tool (Runs only if status isn't manually overridden)
         async function checkServicesStatus() {
             const savedStatuses = JSON.parse(localStorage.getItem('serviceStatuses')) || {};
             
             for (const [key, url] of Object.entries(targetUrls)) {
-                // If admin has set a manual override, keep it
                 if (savedStatuses[key]) continue;
 
                 try {
@@ -798,22 +793,17 @@
             }
         }
 
-        // Page Load Init
         document.addEventListener('DOMContentLoaded', () => {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const today = new Date().toLocaleDateString('ar-DZ', options);
             document.getElementById('liveDate').innerText = today;
 
-            // Check saved admin session
             if (localStorage.getItem('adminSession') === 'true') {
                 isAdminLoggedIn = true;
                 showAdminControls();
             }
 
-            // Load saved status states from LocalStorage
             loadSavedServiceStatuses();
-
-            // Run automated check for non-overridden statuses
             checkServicesStatus();
         });
 
