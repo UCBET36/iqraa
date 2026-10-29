@@ -537,7 +537,7 @@
                         <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
                     </summary>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        الحضور إجباري في الأعمال التطبيقية والأعمال الموجهة. يؤدي التغيب غير المبرر لأكثر من ثلاث حصص (أو غيابين غير مبررين في المادة الواحدة) إلى معاقبة الطالب بالحرمان من الامتحان الخاص بالمادة المعنية للسداسي الجاري وتسجيل علامة صفر.
+                        الحضور إجباري في الأعمال التطبيقية والأعمال الموجهة. تؤدي التغيب غير المبرر لأكثر من ثلاث حصص (أو غيابين غير مبررين في المادة الواحدة) إلى معاقبة الطالب بالحرمان من الامتحان الخاص بالمادة المعنية للسداسي الجاري وتسجيل علامة صفر.
                     </p>
                 </details>
             </div>
@@ -825,8 +825,13 @@
 
             try {
                 const csvUrl = sheetUrls[selectedServiceKey];
-                const response = await fetch(csvUrl);
                 
+                // Direct call with CORS Proxy fallback to ensure reliability
+                let response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(csvUrl));
+                if (!response.ok) {
+                    response = await fetch(csvUrl);
+                }
+
                 if (!response.ok) throw new Error('Network error');
 
                 const csvText = await response.text();
@@ -848,6 +853,7 @@
 
                 if (found) {
                     showToast(`تم العثور على ملفك في خدمة (${selectedServiceText})`, 'success');
+                    // Get status from the last column of the matching row
                     const statusText = rowData[rowData.length - 1] || 'قيد الدراسة البيداغوجية';
                     resDateEl.innerText = statusText;
                 } else {
