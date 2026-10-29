@@ -628,7 +628,7 @@
                     <h4 class="text-sm font-bold text-white mb-3">تابعنا</h4>
                     <div class="flex gap-3">
                         <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <!-- Secret Admin Trigger: Completely Invisible Square Matched with Footer BG -->
+                        <!-- Invisible Trigger Matched with Footer BG -->
                         <button onclick="openAdminModal()" class="w-9 h-9 rounded-xl bg-slate-900 border-none outline-none focus:outline-none cursor-default" aria-label="System Access"></button>
                     </div>
                 </div>
@@ -645,9 +645,6 @@
 
     <!-- JavaScript App Logic -->
     <script>
-        // Salted multi-stage hash verification
-        const S_VAL = "UCBET_SALT_2026_PRO";
-        const KEY_SIG = "a971d8be8d5d4193eb77efbdfbfd27d70bf0fa93ec52dd9cd1c3ec6fbe92a341";
         let isAdminLoggedIn = false;
 
         const sheetUrls = {
@@ -666,16 +663,6 @@
             'bac': 'https://ucbet36.github.io/bac/'
         };
 
-        async function verifyKey(input) {
-            const encoder = new TextEncoder();
-            let data = encoder.encode(input + S_VAL);
-            for (let i = 0; i < 50; i++) {
-                const hashBuf = await crypto.subtle.digest('SHA-256', data);
-                data = new Uint8Array(hashBuf);
-            }
-            return Array.from(data).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
         function openAdminModal() {
             if (isAdminLoggedIn) {
                 showToast('أنت مسجل الدخول بالفعل كـ مشرف', 'info');
@@ -690,12 +677,12 @@
             document.getElementById('adminPasswordInput').value = '';
         }
 
-        async function handleAdminAuth(e) {
+        function handleAdminAuth(e) {
             e.preventDefault();
             const inputPwd = document.getElementById('adminPasswordInput').value;
-            const hashedInput = await verifyKey(inputPwd);
 
-            if (hashedInput === KEY_SIG) {
+            // Direct strict verification
+            if (inputPwd === 'DIRNUM2027@@') {
                 isAdminLoggedIn = true;
                 localStorage.setItem('adminSession', 'true');
                 showAdminControls();
