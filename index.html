@@ -48,9 +48,7 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-        }
+        body { font-family: 'Tajawal', sans-serif; }
         .glass-panel {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
@@ -63,46 +61,35 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .hero-gradient {
-            background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0b1329 100%);
-        }
+        .hero-gradient { background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0b1329 100%); }
         .text-gradient {
             background: linear-gradient(135deg, #fbbf24 0%, #34d399 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #059669;
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+        ::-webkit-scrollbar-thumb { background: #059669; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
 
-    <!-- Toast Notification Container -->
+    <!-- Toast Container -->
     <div id="toastContainer" class="fixed top-5 left-5 z-50 flex flex-col gap-3 max-w-sm pointer-events-none"></div>
 
-    <!-- Main Navigation Bar -->
+    <!-- Header Navigation -->
     <header class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Logo & Portal Name -->
                 <div class="flex items-center gap-4">
                     <div class="relative group cursor-pointer">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-gold-500 p-0.5 shadow-lg shadow-brand-900/20 group-hover:scale-105 transition-transform">
                             <div class="w-full h-full bg-white dark:bg-navy-900 rounded-[14px] flex items-center justify-center p-1">
-                                <svg class="w-9 h-9 text-brand-600 dark:text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="w-9 h-9 text-brand-600 dark:text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                                    <path d="M12 6v6"/>
-                                    <path d="M15 9l-3-3-3 3"/>
+                                    <path d="M12 6v6"/><path d="M15 9l-3-3-3 3"/>
                                 </svg>
                             </div>
                         </div>
@@ -112,50 +99,42 @@
                             <span class="text-2xl font-black tracking-tight text-brand-800 dark:text-emerald-400">إقــرأ</span>
                             <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-gold-400/20 text-gold-600 dark:text-gold-400 border border-gold-500/30">الرقمية</span>
                         </div>
-                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 hidden sm:block">
-                            بوابة الخدمات الطلابية - جامعة الشهيد بن جديد الطارف
-                        </p>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 hidden sm:block">بوابة الخدمات الطلابية - جامعة الشهيد بن جديد الطارف</p>
                     </div>
                 </div>
 
-                <!-- Live Search Input -->
                 <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
                     <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="ابحث عن خدمة طلابية (ماستر، عطلة أكاديمية، إدماج...)" 
-                        class="w-full pl-4 pr-10 py-2.5 bg-slate-100 dark:bg-navy-900/80 border border-slate-200 dark:border-slate-700/80 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 dark:text-slate-200 placeholder-slate-400 transition">
+                    <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="ابحث عن خدمة طلابية..." 
+                        class="w-full pl-4 pr-10 py-2.5 bg-slate-100 dark:bg-navy-900/80 border border-slate-200 dark:border-slate-700/80 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50">
                 </div>
 
-                <!-- Header Actions -->
                 <div class="flex items-center gap-2 sm:gap-3">
                     <button onclick="toggleDarkMode()" aria-label="تبديل المظهر" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
                         <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
                     </button>
 
+                    <!-- Notifications Menu Dynamique Synchronisé -->
                     <div class="relative">
                         <button onclick="toggleNotifications()" aria-label="الإشعارات" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition relative">
                             <i class="fa-regular fa-bell text-lg"></i>
-                            <span class="absolute top-2 left-2 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white dark:ring-navy-900"></span>
+                            <span id="notifBadge" class="absolute top-2 left-2 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white dark:ring-navy-900"></span>
                         </button>
                         <div id="notificationsMenu" class="hidden absolute left-0 mt-3 w-80 glass-panel rounded-2xl shadow-xl py-3 border border-slate-200 dark:border-slate-800 z-50">
                             <div class="px-4 py-2 border-b border-slate-200/60 dark:border-slate-800 flex justify-between items-center">
-                                <h3 class="font-bold text-sm">الإشعارات</h3>
-                                <span class="text-xs font-medium text-brand-600 dark:text-emerald-400 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-md">3 جديدة</span>
+                                <h3 class="font-bold text-sm">الإشعارات والتحديثات</h3>
+                                <span id="notifCount" class="text-xs font-medium text-brand-600 dark:text-emerald-400 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-md">مزامنة...</span>
                             </div>
-                            <div class="divide-y divide-slate-100 dark:divide-slate-800/50 max-h-64 overflow-y-auto">
-                                <a href="#" class="block px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
-                                    <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">تم فتح فترة تقديم طلبات العطل الأكاديمية</p>
-                                    <span class="text-[10px] text-slate-400 mt-1 block">منذ ساعتين</span>
-                                </a>
+                            <div id="notifList" class="divide-y divide-slate-100 dark:divide-slate-800/50 max-h-64 overflow-y-auto">
+                                <p class="p-4 text-xs text-slate-400 text-center">جاري جلب الإشعارات المباشرة...</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3 pr-2 border-r border-slate-200 dark:border-slate-800">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-gold-500 text-white flex items-center justify-center font-bold text-sm shadow-md">
-                            ط
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-gold-500 text-white flex items-center justify-center font-bold text-sm shadow-md">ط</div>
                         <div class="hidden lg:block text-right">
                             <p class="text-xs font-bold text-slate-800 dark:text-slate-200">فضاء الطالب</p>
                             <p class="text-[11px] text-slate-400">حساب موحد</p>
@@ -167,14 +146,11 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
-        <!-- Hero Welcome Banner -->
+        <!-- Hero Banner -->
         <section class="relative rounded-3xl overflow-hidden hero-gradient text-white shadow-2xl p-6 sm:p-10 border border-emerald-500/20">
-            <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            
             <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                 <div class="space-y-3 max-w-2xl">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-emerald-200 font-medium">
@@ -185,7 +161,7 @@
                         مرحباً بك في منصة <span class="text-gradient">إقــرأ</span> للخدمات الرقمية
                     </h1>
                     <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
-                        بوابتكم الموحدة لإيداع ومتابعة كافة الطلبات الإدارية والبيداغوجية بكل سهولة وشفافية، دون الحاجة للتنقل.
+                        بوابتكم الموحدة لإيداع ومتابعة كافة الطلبات الإدارية والبيداغوجية بكل سهولة وشفافية.
                     </p>
                 </div>
 
@@ -202,21 +178,18 @@
                     <div class="h-px bg-white/10 w-full hidden lg:block"></div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                            <i class="fa-solid fa-bolt text-lg"></i>
+                            <i class="fa-solid fa-arrows-rotate animate-spin"></i>
                         </div>
                         <div>
-                            <p class="text-[11px] text-slate-300">حالة الخدمات</p>
-                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                مراقبة المنصات مفعّلة
-                            </span>
+                            <p class="text-[11px] text-slate-300">مزامنة المنصات</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300">مباشر ومتزامن</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section Header -->
+        <!-- Services Grid Section -->
         <section class="space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -224,40 +197,37 @@
                         <i class="fa-solid fa-grid-2 text-brand-600 dark:text-emerald-400"></i>
                         الخدمات البيداغوجية المتاحة
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة لملء الاستمارة والإيداع الرقمي</p>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة للإيداع أو متابعة الحالة</p>
                 </div>
 
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="filterCategory('all')" class="category-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-brand-600 text-white shadow-md shadow-brand-600/20">الكل</button>
-                    <button onclick="filterCategory('registration')" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-brand-500 hover:text-white">التسجيلات</button>
-                    <button onclick="filterCategory('status')" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-brand-500 hover:text-white">الوضعية الأكاديمية</button>
+                    <button onclick="filterCategory('all')" class="category-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-brand-600 text-white shadow-md">الكل</button>
+                    <button onclick="filterCategory('registration')" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">التسجيلات</button>
+                    <button onclick="filterCategory('status')" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">الوضعية الأكاديمية</button>
                 </div>
             </div>
 
-            <!-- Services Grid -->
             <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <!-- Service 1: Academic Leave -->
-                <a href="https://ucbet36.github.io/conge/" target="_blank" data-service-key="conge" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
+                <a href="https://ucbet36.github.io/conge/" target="_blank" data-service-key="conge" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl transition-all border border-slate-200/80 dark:border-slate-800 block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-user-clock"></i>
                             </div>
-                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                مفتوح حالياً
+                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                جاري التحقق...
                             </span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition-colors">طلب عطلة أكاديمية</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-                                تجميد السنة الجامعية لأسباب مبررة (مرضية، شخصية، أو التزامات عائلية) وفق القوانين المعمول بها.
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 transition-colors">طلب عطلة أكاديمية</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">تجميد السنة الجامعية لأسباب مبررة وفق القوانين المعمول بها.</p>
                         </div>
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-regular fa-file-pdf ml-1"></i> تتطلب مبرر</span>
-                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="action-btn px-4 py-2 bg-slate-900 group-hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
                         </span>
@@ -265,26 +235,24 @@
                 </a>
 
                 <!-- Service 2: Reintegration -->
-                <a href="https://ucbet36.github.io/reintegration/" target="_blank" data-service-key="reintegration" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
+                <a href="https://ucbet36.github.io/reintegration/" target="_blank" data-service-key="reintegration" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl transition-all border border-slate-200/80 dark:border-slate-800 block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-rotate-right"></i>
                             </div>
-                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                مفتوح حالياً
+                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                جاري التحقق...
                             </span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition-colors">طلب إعادة الإدماج</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-                                طلب استئناف الدراسة للطلبة المنقطعين أو بعد انتهاء فترة العطلة الأكاديمية المرخصة.
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 transition-colors">طلب إعادة الإدماج</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">طلب استئناف الدراسة للطلبة المنقطعين أو بعد العطلة الأكاديمية.</p>
                         </div>
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-clock-rotate-left ml-1"></i> معالجة خلال 72س</span>
-                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="action-btn px-4 py-2 bg-slate-900 group-hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
                         </span>
@@ -292,26 +260,24 @@
                 </a>
 
                 <!-- Service 3: Master Registration -->
-                <a href="https://ucbet36.github.io/master/" target="_blank" data-service-key="master" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="registration">
+                <a href="https://ucbet36.github.io/master/" target="_blank" data-service-key="master" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl transition-all border border-slate-200/80 dark:border-slate-800 block" data-category="registration">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-graduation-cap"></i>
                             </div>
-                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                مرحلة الترتيب
+                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                جاري التحقق...
                             </span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition-colors">التسجيل في الماستر</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-                                الترشح لالتحاق بالتكاوين في السنة الأولى والثانية ماستر (فئة 80% وفئة 20% الخارجية).
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 transition-colors">التسجيل في الماستر</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">الترشح للالتحاق بالتكاوين في ماستر 1 وماستر 2 (فئة 80% و 20%).</p>
                         </div>
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-award ml-1"></i> دراسة كشوف النقاط</span>
-                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="action-btn px-4 py-2 bg-slate-900 group-hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
                         </span>
@@ -319,26 +285,24 @@
                 </a>
 
                 <!-- Service 4: Registration Cancellation -->
-                <a href="https://ucbet36.github.io/cancel/" target="_blank" data-service-key="cancel" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
+                <a href="https://ucbet36.github.io/cancel/" target="_blank" data-service-key="cancel" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl transition-all border border-slate-200/80 dark:border-slate-800 block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-user-xmark"></i>
                             </div>
-                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                مفتوح حالياً
+                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                جاري التحقق...
                             </span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition-colors">إلغاء التسجيل</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-                                طلب سحب شهادة البكالوريا الأصلية وإلغاء التسجيل بالجامعة نهائياً بطلب من الطالب.
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 transition-colors">إلغاء التسجيل</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">طلب سحب شهادة البكالوريا الأصلية وإلغاء التسجيل نهائياً.</p>
                         </div>
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-triangle-exclamation ml-1 text-rose-500"></i> إجراء نهائي</span>
-                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="action-btn px-4 py-2 bg-slate-900 group-hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
                         </span>
@@ -346,26 +310,24 @@
                 </a>
 
                 <!-- Service 5: Unused Baccalaureate -->
-                <a href="https://ucbet36.github.io/bac/" target="_blank" data-service-key="bac" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="registration">
+                <a href="https://ucbet36.github.io/bac/" target="_blank" data-service-key="bac" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl transition-all border border-slate-200/80 dark:border-slate-800 block" data-category="registration">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-id-card-clip"></i>
                             </div>
-                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                مفتوح حالياً
+                            <span class="status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                جاري التحقق...
                             </span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition-colors">التسجيل بباكالوريا غير مستعملة</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-                                طلب التسجيل للحائزين على شهادة بكالوريا سابقة ولم يقوموا بإنشاء أي إيداع أو تسجيل جامعي سابق.
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-brand-600 transition-colors">التسجيل بباكالوريا غير مستعملة</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">طلب التسجيل للحائزين على شهادة بكالوريا سابقة غير مستعملة.</p>
                         </div>
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-                        <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-certificate ml-1"></i> مطابقة المعدل الأدنى</span>
-                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-certificate ml-1"></i> مطابقة المعدل</span>
+                        <span class="action-btn px-4 py-2 bg-slate-900 group-hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
                         </span>
@@ -375,7 +337,7 @@
             </div>
         </section>
 
-        <!-- Application Tracking System Section -->
+        <!-- Dynamic Tracking Section -->
         <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 space-y-6">
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-5">
                 <div>
@@ -383,11 +345,11 @@
                         <i class="fa-solid fa-list-check text-gold-500"></i>
                         متابعة حالة الطلبات (نظام الاستعلام المباشر)
                     </h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة وأدخل الرقم المرجعي أو رقم التسجيل لمتابعة حالة معالجة ملفك</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة أدناه وأدخل رقم البكالوريا أو الرقم المرجعي لمتابعة ملفك</p>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-xl w-full">
-                    <select id="trackServiceSelect" class="px-3.5 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <select id="trackServiceSelect" class="px-3.5 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold">
                         <option value="conge">طلب عطلة أكاديمية</option>
                         <option value="reintegration">طلب إعادة الإدماج</option>
                         <option value="master">التسجيل في الماستر</option>
@@ -395,8 +357,8 @@
                         <option value="bac">تسجيل بباكالوريا غير مستعملة</option>
                     </select>
 
-                    <input type="text" id="trackInput" placeholder="رقم التسجيل / الرقم المرجعي" 
-                        class="flex-1 px-4 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm uppercase focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="text" id="trackInput" placeholder="رقم التسجيل / المرجعي" 
+                        class="flex-1 px-4 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm uppercase">
                     
                     <button onclick="searchRequest()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition shadow-md whitespace-nowrap flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
@@ -405,53 +367,54 @@
                 </div>
             </div>
 
-            <!-- Dynamic Tracking Result -->
-            <div id="trackingResult" class="p-6 bg-slate-50/80 dark:bg-navy-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4">
+            <!-- Detailed Result Output -->
+            <div id="trackingResult" class="p-6 bg-slate-50/80 dark:bg-navy-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-b border-slate-200/60 dark:border-slate-800 pb-4">
                     <div>
-                        <span class="text-xs font-semibold text-slate-400 block">رقم الطلب المرجعي</span>
-                        <span id="resTrackId" class="text-lg font-black text-brand-700 dark:text-emerald-400 tracking-wider">---</span>
+                        <span class="text-xs font-semibold text-slate-400 block">رقم التسجيل المرجعي</span>
+                        <span id="resTrackId" class="text-lg font-black text-brand-700 dark:text-emerald-400">---</span>
                     </div>
                     <div>
-                        <span class="text-xs font-semibold text-slate-400 block">نوع الخدمة المحددة</span>
+                        <span class="text-xs font-semibold text-slate-400 block">نوع الخدمة</span>
                         <span id="resServiceType" class="text-sm font-bold text-slate-800 dark:text-slate-200">اختر خدمة واستعلم</span>
                     </div>
                     <div>
-                        <span class="text-xs font-semibold text-slate-400 block">تاريخ / حالة الطلب</span>
-                        <span id="resDate" class="text-sm font-medium text-slate-600 dark:text-slate-300">---</span>
+                        <span class="text-xs font-semibold text-slate-400 block">حالة الملف التفصيلية</span>
+                        <span id="resDate" class="text-sm font-bold text-emerald-600 dark:text-emerald-400">---</span>
                     </div>
                 </div>
 
-                <div class="pt-4 pb-2">
+                <!-- Detailed Rows Information Extracted from Google Sheet -->
+                <div id="detailedFields" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-white/60 dark:bg-navy-900/80 rounded-xl border border-slate-200/60 dark:border-slate-800 text-xs">
+                    <div><span class="text-slate-400 block">الاسم واللقب:</span><p id="detName" class="font-bold">---</p></div>
+                    <div><span class="text-slate-400 block">الكلية/المعهد:</span><p id="detFaculty" class="font-bold">---</p></div>
+                    <div><span class="text-slate-400 block">التخصص المطلوب:</span><p id="detMajor" class="font-bold">---</p></div>
+                    <div><span class="text-slate-400 block">قرار اللجنة:</span><p id="detDecision" class="font-bold text-brand-600">---</p></div>
+                </div>
+
+                <!-- Stepper Progress Bar -->
+                <div class="pt-2 pb-2">
                     <div id="stepperContainer" class="relative flex items-center justify-between max-w-3xl mx-auto opacity-50">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-200 dark:bg-slate-700 z-0"></div>
                         <div id="progressFill" class="absolute right-0 top-1/2 -translate-y-1/2 h-1 bg-brand-600 transition-all duration-500 z-0" style="width: 0%;"></div>
 
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">
-                                1
-                            </div>
+                            <div id="step1" class="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">1</div>
                             <span class="text-xs font-bold text-slate-500">إيداع الملف</span>
                         </div>
 
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                2
-                            </div>
+                            <div id="step2" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">2</div>
                             <span class="text-xs font-semibold text-slate-400">قيد الدراسة</span>
                         </div>
 
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                3
-                            </div>
+                            <div id="step3" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">3</div>
                             <span class="text-xs font-semibold text-slate-400">موافقة اللجنة</span>
                         </div>
 
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
-                                4
-                            </div>
+                            <div id="step4" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">4</div>
                             <span class="text-xs font-semibold text-slate-400">جاهزية القرار</span>
                         </div>
                     </div>
@@ -459,125 +422,18 @@
             </div>
         </section>
 
-        <!-- FAQ Section Inspired by Regulatory Decrees (1164 & 1165) -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-scale-balanced text-brand-600 dark:text-emerald-400"></i>
-                    الأسئلة الشائعة والضوابط الأكاديمية التنظيمية
-                </h2>
-                <span class="text-xs text-slate-400 hidden sm:inline">مستنبطة من ضوابط التقييم والتدرج الأكاديمي</span>
-            </div>
-
-            <div class="space-y-3">
-                <details class="group glass-panel rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition">
-                    <summary class="flex items-center justify-between font-bold text-sm text-slate-800 dark:text-slate-200">
-                        <span>ما هي الشروط والأسباب المقبولة لاستفادة الطالب من العطلة الأكاديمية؟</span>
-                        <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        تُمنح العطلة الأكاديمية (تجميد السنة) لأسباب استثنائية مثبتة بملف رسمي شامل، مثل: الأمراض المزمنة المكلفة، الأمومة، الخدمة الوطنية، أو الالتزامات العائلية القاهرة. ويجب تقديم الطلب قبل بدء الامتحانات النهائية للسداسي الأول. كما لا تحسب فترة العطلة الأكاديمية ضمن المدة المسموح بها لنيل الشهادة الجامعية.
-                    </p>
-                </details>
-
-                <details class="group glass-panel rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition">
-                    <summary class="flex items-center justify-between font-bold text-sm text-slate-800 dark:text-slate-200">
-                        <span>كيف يتم التعامل مع طلبات إعادة الإدماج للطلبة المنقطعين؟</span>
-                        <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        تُدرس طلبات إعادة الإدماج من طرف اللجان البيداغوجية للأقسام بناءً على الشواغر المتاحة والسجل التأديبي للطالب مع شرط عدم تجاوز أقصى فترة انقطاع مرخص بها (عادة سنتين كحد أقصى أو ما يعادل بكالوريا السنة الحالية - 2). وفي حال تغير برامج التكوين، يلزم الطالب بالخضوع للتكييف البيداغوجي وتدارك المقررات الشاغرة.
-                    </p>
-                </details>
-
-                <details class="group glass-panel rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition">
-                    <summary class="flex items-center justify-between font-bold text-sm text-slate-800 dark:text-slate-200">
-                        <span>ما هي الآثار المترتبة على تقديم طلب إلغاء التسجيل الجامعي؟</span>
-                        <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        إلغاء التسجيل قرار نهائي يتم بموجبه سحب كشف نقاط البكالوريا الأصلي وإسقاط حق الطالب في المواصلة بنفس الشهادة للعام الدراسي الجاري. ولا يمكن إعادة استخدام نفس شهادة البكالوريا للتسجيل مجدداً في نفس المؤسسة إلا عبر القنوات والتراخيص الخاصة بالتسجيل ببكالوريا سابقة.
-                    </p>
-                </details>
-
-                <details class="group glass-panel rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition">
-                    <summary class="flex items-center justify-between font-bold text-sm text-slate-800 dark:text-slate-200">
-                        <span>كيف يتم معالجة طلبات الترشح للقبول في دراسات الماستر؟</span>
-                        <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        يتم ترتيب المترشحين للماستر اعتماداً على المعدل الترتيبي المحسوب عبر مسار الليسانس، مع خصم نسب مئوية في حالات الاستدراك، التأخر الأكاديمي، أو العقوبات التأديبية. وتُخصص نسبة 80% لخريجي الدفعة الحديثة بنفس المؤسسة و20% للمترشحين من الدفعات المتخرجة سابقاً أو المؤسسات الجامعية الأخرى.
-                    </p>
-                </details>
-
-                <details class="group glass-panel rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition">
-                    <summary class="flex items-center justify-between font-bold text-sm text-slate-800 dark:text-slate-200">
-                        <span>ما هي قواعد المواظبة وتأثير الغيابات غير المبررة على المسار البيداغوجي؟</span>
-                        <span class="transition group-open:-rotate-180 text-brand-600 dark:text-emerald-400"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
-                        الحضور إجباري في الأعمال التطبيقية والأعمال الموجهة. يؤدي التغيب غير المبرر لأكثر من ثلاث حصص (أو غيابين غير مبررين في المادة الواحدة) إلى معاقبة الطالب بالحرمان من الامتحان الخاص بالمادة المعنية للسداسي الجاري وتسجيل علامة صفر.
-                    </p>
-                </details>
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer -->
     <footer class="mt-auto bg-slate-900 text-slate-400 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-white font-black text-xl">
-                        <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
-                        <span>جامعة الطارف</span>
-                    </div>
-                    <p class="text-xs leading-relaxed text-slate-400">
-                        جامعة الشهيد بن جديد - الطارف، مؤسسة تعليم عالي وبحث علمي تسعى لتقديم أفضل الخدمات الرقمية لطلابها.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-bold text-white mb-3">روابط سريعة</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#" class="hover:text-emerald-400 transition">الموقع الرسمي للجامعة</a></li>
-                        <li><a href="#" class="hover:text-emerald-400 transition">منصة التعليم عن بعد Moodle</a></li>
-                        <li><a href="#" class="hover:text-emerald-400 transition">البوابة الوطنية للإشعار الرقمي</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-bold text-white mb-3">التواصل والاتصال</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-emerald-400"></i> الطارف - الجزائر</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-emerald-400"></i> contact@univ-eltarf.dz</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-emerald-400"></i> +213 (0) 38 60 xx xx</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-bold text-white mb-3">تابعنا</h4>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500 space-y-2">
-                <p>جميع الحقوق محفوظة © 2026 - بوابة إقرأ للخدمات الطلابية - جامعة الشهيد بن جديد الطارف</p>
-                <p class="text-[11px] text-slate-400">
-                    تم تطوير هذا البورتال بواسطة: <span class="font-bold text-emerald-400">أ.د. بوشيخجوخ مهدي</span> (Pr. Boucheikhchoukh Mehdi)
-                </p>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs space-y-2">
+            <p>جميع الحقوق محفوظة © 2026 - بوابة إقرأ للخدمات الطلابية - جامعة الشهيد بن جديد الطارف</p>
+            <p class="text-[11px] text-slate-400">تم تطوير البورتال بواسطة: <span class="font-bold text-emerald-400">أ.د. بوشيخجوخ مهدي</span></p>
         </div>
     </footer>
 
-    <!-- JavaScript App Logic & Automated Status Monitor -->
+    <!-- JavaScript & Direct Sync Engines -->
     <script>
-        // Links to Google Spreadsheets CSV Exports
         const sheetUrls = {
             'conge': 'https://docs.google.com/spreadsheets/d/1mpCiXJcrkgAXh85fFsNHI4MLptXxFGSSymnoNtGafyA/export?format=csv',
             'reintegration': 'https://docs.google.com/spreadsheets/d/1TAfgtauM30GAdakaEy2eLrrxFIadd97exZZazwPQ_0M/export?format=csv',
@@ -586,94 +442,7 @@
             'bac': 'https://docs.google.com/spreadsheets/d/1SKMt6cVLAplhYXx-0dLIofAZPpasSqbDIZM9DLuagcI/export?format=csv'
         };
 
-        const targetUrls = {
-            'conge': 'https://ucbet36.github.io/conge/',
-            'reintegration': 'https://ucbet36.github.io/reintegration/',
-            'master': 'https://ucbet36.github.io/master/',
-            'cancel': 'https://ucbet36.github.io/cancel/',
-            'bac': 'https://ucbet36.github.io/bac/'
-        };
-
-        // Automatic Status Monitoring Tool
-        async function checkServicesStatus() {
-            for (const [key, url] of Object.entries(targetUrls)) {
-                try {
-                    // Inspect platform content via CORS Proxy or directly
-                    const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url));
-                    if (response.ok) {
-                        const htmlText = await response.text();
-                        if (htmlText.includes('مغلقة حالياً') || htmlText.includes('مغلق حاليا')) {
-                            setServiceStatusClosed(key);
-                        }
-                    }
-                } catch (e) {
-                    console.log(`Checking status via backup route for ${key}...`);
-                }
-            }
-        }
-
-        // Switch Badge UI to Closed State
-        function setServiceStatusClosed(serviceKey) {
-            const card = document.querySelector(`[data-service-key="${serviceKey}"]`);
-            if (card) {
-                const badge = card.querySelector('.status-badge');
-                if (badge) {
-                    badge.innerText = 'مغلق حالياً';
-                    badge.className = 'status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
-                }
-            }
-        }
-
-        // Set Date and launch Monitor on Load
-        document.addEventListener('DOMContentLoaded', () => {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date().toLocaleDateString('ar-DZ', options);
-            document.getElementById('liveDate').innerText = today;
-
-            // Launch automatic platform monitoring tool
-            checkServicesStatus();
-        });
-
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const icon = document.getElementById('themeIcon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = 'fa-solid fa-moon text-lg';
-                showToast('تم التبديل إلى المظهر الفاتح', 'info');
-            } else {
-                html.classList.add('dark');
-                icon.className = 'fa-solid fa-sun text-lg text-amber-400';
-                showToast('تم التبديل إلى المظهر الداكن', 'info');
-            }
-        }
-
-        function toggleNotifications() {
-            document.getElementById('notificationsMenu').classList.toggle('hidden');
-        }
-
-        function filterServices() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(query) ? 'flex' : 'none';
-            });
-        }
-
-        function filterCategory(category) {
-            const buttons = document.querySelectorAll('.category-btn');
-            buttons.forEach(btn => {
-                btn.className = 'category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-brand-500 hover:text-white';
-            });
-            event.target.className = 'category-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-brand-600 text-white shadow-md shadow-brand-600/20';
-
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach(card => {
-                card.style.display = (category === 'all' || card.dataset.category === category) ? 'flex' : 'none';
-            });
-        }
-
+        // CSV Parser Engine
         function parseCSV(text) {
             const lines = text.split('\n');
             return lines.map(line => {
@@ -681,22 +450,81 @@
                 let insideQuotes = false;
                 let currentValue = '';
                 for (let char of line) {
-                    if (char === '"' && insideQuotes) {
-                        insideQuotes = false;
-                    } else if (char === '"' && !insideQuotes) {
-                        insideQuotes = true;
-                    } else if (char === ',' && !insideQuotes) {
+                    if (char === '"' && insideQuotes) insideQuotes = false;
+                    else if (char === '"' && !insideQuotes) insideQuotes = true;
+                    else if (char === ',' && !insideQuotes) {
                         values.push(currentValue.trim());
                         currentValue = '';
-                    } else {
-                        currentValue += char;
-                    }
+                    } else currentValue += char;
                 }
                 values.push(currentValue.trim());
                 return values;
             });
         }
 
+        // Direct Check via Spreadsheets for Status & Notifications Sync
+        async function syncPlatformsAndNotifications() {
+            let totalNotifs = [];
+
+            for (const [key, csvUrl] of Object.entries(sheetUrls)) {
+                try {
+                    const response = await fetch(csvUrl);
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        const rows = parseCSV(csvText);
+                        
+                        // Check state in sheet config cell/first row or content
+                        const isClosed = csvText.includes('مغلقة حالياً') || csvText.includes('مغلق حاليا') || csvText.includes('STATUS_CLOSED');
+                        
+                        const card = document.querySelector(`[data-service-key="${key}"]`);
+                        if (card) {
+                            const badge = card.querySelector('.status-badge');
+                            const actionBtn = card.querySelector('.action-btn');
+
+                            if (isClosed) {
+                                badge.innerText = 'مغلق حالياً';
+                                badge.className = 'status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-rose-500/10 text-rose-600 border border-rose-500/20';
+                                card.classList.add('opacity-75');
+                                actionBtn.className = 'action-btn px-4 py-2 bg-slate-400 text-white rounded-xl text-xs font-bold cursor-not-allowed';
+                                actionBtn.querySelector('span').innerText = 'الخدمة مغلقة';
+                                card.onclick = (e) => { e.preventDefault(); showToast('هذه الخدمة مغلقة حالياً من طرف الإدارة', 'error'); };
+                            } else {
+                                badge.innerText = (key === 'master') ? 'مرحلة الترتيب' : 'مفتوح حالياً';
+                                badge.className = 'status-badge px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20';
+                            }
+                        }
+
+                        // Collect notifications if present in header/rows
+                        if (rows.length > 1) {
+                            totalNotifs.push({
+                                title: `تحديث في ${document.querySelector(`[data-service-key="${key}"] h3`).innerText}`,
+                                time: `عدد المسجلين: ${rows.length - 1}`
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.log(`Sync status error for ${key}:`, e);
+                }
+            }
+
+            // Render Notifications List
+            const notifList = document.getElementById('notifList');
+            const notifCount = document.getElementById('notifCount');
+            if (totalNotifs.length > 0) {
+                notifCount.innerText = `${totalNotifs.length} جديدة`;
+                notifList.innerHTML = totalNotifs.map(n => `
+                    <div class="px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
+                        <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">${n.title}</p>
+                        <span class="text-[10px] text-slate-400 mt-1 block">${n.time}</span>
+                    </div>
+                `).join('');
+            } else {
+                notifCount.innerText = '0 جديدة';
+                notifList.innerHTML = `<p class="p-4 text-xs text-slate-400 text-center">لا توجد إشعارات جديدة</p>`;
+            }
+        }
+
+        // Search Request & Render Detailed Info
         async function searchRequest() {
             const trackVal = document.getElementById('trackInput').value.trim();
             const serviceSelect = document.getElementById('trackServiceSelect');
@@ -708,80 +536,104 @@
                 return;
             }
 
-            showToast('جاري الاتصال بالمرجع والتحقق من البيانات...', 'info');
+            showToast('جاري الاتصال بقاعدة البيانات ومطابقة البيانات...', 'info');
 
             try {
-                const csvUrl = sheetUrls[selectedServiceKey];
-                const response = await fetch(csvUrl);
-                
-                if (!response.ok) throw new Error('Network error');
+                const response = await fetch(sheetUrls[selectedServiceKey]);
+                if (!response.ok) throw new Error('Database connection failed');
 
                 const csvText = await response.text();
                 const rows = parseCSV(csvText);
 
-                let found = false;
-                let rowData = null;
-
+                let foundRow = null;
                 for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    if (row.some(cell => cell.toLowerCase().includes(trackVal.toLowerCase()))) {
-                        found = true;
-                        rowData = row;
+                    if (rows[i].some(cell => cell.toLowerCase().includes(trackVal.toLowerCase()))) {
+                        foundRow = rows[i];
                         break;
                     }
                 }
 
                 document.getElementById('resTrackId').innerText = trackVal.toUpperCase();
                 document.getElementById('resServiceType').innerText = selectedServiceText;
+                
                 const stepper = document.getElementById('stepperContainer');
                 const progressFill = document.getElementById('progressFill');
+                const detBox = document.getElementById('detailedFields');
 
-                if (found) {
-                    showToast(`تم العثور على ملفك في خدمة (${selectedServiceText})`, 'success');
+                if (foundRow) {
+                    showToast(`تم العثور على ملفك بنجاح`, 'success');
                     
-                    const statusText = rowData[rowData.length - 1] || 'قيد الدراسة البيداغوجية';
-                    document.getElementById('resDate').innerText = statusText;
-
+                    // Detailed Information Mapping
+                    document.getElementById('detName').innerText = foundRow[2] || foundRow[1] || 'غير محدد';
+                    document.getElementById('detFaculty').innerText = foundRow[3] || 'جامعة الطارف';
+                    document.getElementById('detMajor').innerText = foundRow[4] || 'تخصص أكاديمي';
+                    
+                    const lastStatus = foundRow[foundRow.length - 1] || 'قيد الدراسة البيداغوجية';
+                    document.getElementById('detDecision').innerText = lastStatus;
+                    document.getElementById('resDate').innerText = lastStatus;
+                    
+                    detBox.classList.remove('hidden');
                     stepper.classList.remove('opacity-50');
-                    if (statusText.includes('مقبول') || statusText.includes('جاهز') || statusText.includes('تم')) {
+
+                    // Dynamic Stepper Calculator
+                    if (lastStatus.includes('مقبول') || lastStatus.includes('جاهز') || lastStatus.includes('نهائي')) {
                         progressFill.style.width = '100%';
-                    } else if (statusText.includes('موافقة')) {
+                    } else if (lastStatus.includes('موافقة') || lastStatus.includes('لجنة')) {
                         progressFill.style.width = '66%';
                     } else {
                         progressFill.style.width = '33%';
                     }
                 } else {
-                    showToast(`لم يتم العثور على نتائج مطابقة لـ (${trackVal}) في هذه الخدمة`, 'error');
+                    showToast(`لم يتم العثور على نتائج للرقم: ${trackVal}`, 'error');
                     document.getElementById('resDate').innerText = 'غير مسجل أو قيد المعالجة الأولية';
+                    detBox.classList.add('hidden');
                     stepper.classList.add('opacity-50');
                     progressFill.style.width = '0%';
                 }
 
-            } catch (error) {
-                showToast('تعذر الاتصال بقاعدة البيانات حالياً. يرجى المحاولة لاحقاً.', 'error');
+            } catch (err) {
+                showToast('تعذر الاتصال بقاعدة البيانات حالياً', 'error');
             }
+        }
+
+        // Utility Handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('liveDate').innerText = new Date().toLocaleDateString('ar-DZ', options);
+            syncPlatformsAndNotifications();
+        });
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function toggleNotifications() {
+            document.getElementById('notificationsMenu').classList.toggle('hidden');
+        }
+
+        function filterServices() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.style.display = card.innerText.toLowerCase().includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.className = 'category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300');
+            event.target.className = 'category-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-brand-600 text-white shadow-md';
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'flex' : 'none';
+            });
         }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
-
-            let iconClass = 'fa-circle-info text-blue-500';
-            if (type === 'success') iconClass = 'fa-circle-check text-emerald-500';
-            if (type === 'error') iconClass = 'fa-circle-exclamation text-rose-500';
-
+            let iconClass = type === 'success' ? 'fa-circle-check text-emerald-500' : (type === 'error' ? 'fa-circle-exclamation text-rose-500' : 'fa-circle-info text-blue-500');
             toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl text-xs font-bold text-slate-800 dark:text-slate-200 transition duration-300`;
-            toast.innerHTML = `
-                <i class="fa-solid ${iconClass} text-base"></i>
-                <span class="flex-1">${message}</span>
-            `;
-
+            toast.innerHTML = `<i class="fa-solid ${iconClass} text-base"></i><span class="flex-1">${message}</span>`;
             container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 4000);
+            setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 4000);
         }
     </script>
 </body>
