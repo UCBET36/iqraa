@@ -71,7 +71,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -99,7 +98,6 @@
                     <div class="relative group cursor-pointer">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-gold-500 p-0.5 shadow-lg shadow-brand-900/20 group-hover:scale-105 transition-transform">
                             <div class="w-full h-full bg-white dark:bg-navy-900 rounded-[14px] flex items-center justify-center p-1">
-                                <!-- Emblem SVG -->
                                 <svg class="w-9 h-9 text-brand-600 dark:text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -131,20 +129,16 @@
 
                 <!-- Header Actions -->
                 <div class="flex items-center gap-2 sm:gap-3">
-                    
-                    <!-- Dark/Light Theme Toggle -->
                     <button onclick="toggleDarkMode()" aria-label="تبديل المظهر" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
                         <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
                     </button>
 
-                    <!-- Notifications Button -->
                     <div class="relative">
                         <button onclick="toggleNotifications()" aria-label="الإشعارات" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition relative">
                             <i class="fa-regular fa-bell text-lg"></i>
                             <span class="absolute top-2 left-2 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white dark:ring-navy-900"></span>
                         </button>
-                        <!-- Notifications Dropdown -->
-                        <div id="notificationsMenu" class="hidden absolute left-0 mt-3 w-80 glass-panel rounded-2xl shadow-xl py-3 border border-slate-200 dark:border-slate-800 z-50 animate-in fade-in slide-in-from-top-2">
+                        <div id="notificationsMenu" class="hidden absolute left-0 mt-3 w-80 glass-panel rounded-2xl shadow-xl py-3 border border-slate-200 dark:border-slate-800 z-50">
                             <div class="px-4 py-2 border-b border-slate-200/60 dark:border-slate-800 flex justify-between items-center">
                                 <h3 class="font-bold text-sm">الإشعارات</h3>
                                 <span class="text-xs font-medium text-brand-600 dark:text-emerald-400 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-md">3 جديدة</span>
@@ -154,15 +148,10 @@
                                     <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">تم فتح فترة تقديم طلبات العطل الأكاديمية</p>
                                     <span class="text-[10px] text-slate-400 mt-1 block">منذ ساعتين</span>
                                 </a>
-                                <a href="#" class="block px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
-                                    <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">تحديث شروط التسجيل في الماستر 2026/2027</p>
-                                    <span class="text-[10px] text-slate-400 mt-1 block">منذ يوم واحد</span>
-                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- User Profile Dropdown -->
                     <div class="flex items-center gap-3 pr-2 border-r border-slate-200 dark:border-slate-800">
                         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-gold-500 text-white flex items-center justify-center font-bold text-sm shadow-md">
                             ط
@@ -172,7 +161,6 @@
                             <p class="text-[11px] text-slate-400">حساب موحد</p>
                         </div>
                     </div>
-
                 </div>
 
             </div>
@@ -184,7 +172,6 @@
 
         <!-- Hero Welcome Banner -->
         <section class="relative rounded-3xl overflow-hidden hero-gradient text-white shadow-2xl p-6 sm:p-10 border border-emerald-500/20">
-            <!-- Background Decorative Elements -->
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
@@ -202,7 +189,6 @@
                     </p>
                 </div>
 
-                <!-- Dynamic Date & Quick Stats -->
                 <div class="w-full lg:w-auto bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 flex flex-wrap lg:flex-col gap-4 min-w-[240px]">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-400">
@@ -241,7 +227,6 @@
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة لملء الاستمارة والإيداع الرقمي</p>
                 </div>
 
-                <!-- Filter Pills -->
                 <div class="flex flex-wrap gap-2">
                     <button onclick="filterCategory('all')" class="category-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-brand-600 text-white shadow-md shadow-brand-600/20">الكل</button>
                     <button onclick="filterCategory('registration')" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-brand-500 hover:text-white">التسجيلات</button>
@@ -252,8 +237,8 @@
             <!-- Services Grid -->
             <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Service 1: Academic Leave (Lien vers Congés Académiques intégré) -->
-                <div class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800" data-category="status">
+                <!-- Service 1: Academic Leave (Lien cliquable) -->
+                <a href="https://ucbet36.github.io/conge/" target="_blank" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
@@ -272,15 +257,15 @@
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-regular fa-file-pdf ml-1"></i> تتطلب مبرر</span>
-                        <a href="https://script.google.com/a/macros/univ-eltarf.dz/s/AKfycby0op0i89RK5ZLm7ymqJnyKxWL4aE_enyPom9oaKQY0rtAZUSqRomrY1JzKqEQZiKLV/exec" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Service 2: Reintegration -->
-                <div class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800" data-category="status">
+                <!-- Service 2: Reintegration (Lien cliquable) -->
+                <a href="https://ucbet36.github.io/reintegration/" target="_blank" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
@@ -299,15 +284,15 @@
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-clock-rotate-left ml-1"></i> معالجة خلال 72س</span>
-                        <button onclick="openModal('reintegration')" class="px-4 py-2 bg-slate-900 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                        </button>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Service 3: Master Registration (Lien vers Master intégré) -->
-                <div class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800" data-category="registration">
+                <!-- Service 3: Master Registration (Lien cliquable) -->
+                <a href="https://ucbet36.github.io/master/" target="_blank" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="registration">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
@@ -326,15 +311,15 @@
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-award ml-1"></i> دراسة كشوف النقاط</span>
-                        <a href="https://script.google.com/macros/s/AKfycbwnxZDb-Tr5c2N3R3CvMX16Pp6emsJN4UzjC4PCM2fUK19-YwN0jkFb38A4k7rchw8j/exec" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Service 4: Registration Cancellation -->
-                <div class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800" data-category="status">
+                <!-- Service 4: Registration Cancellation (Lien cliquable) -->
+                <a href="https://ucbet36.github.io/cancel/" target="_blank" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="status">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
@@ -353,15 +338,15 @@
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-triangle-exclamation ml-1 text-rose-500"></i> إجراء نهائي</span>
-                        <button onclick="openModal('cancel-registration')" class="px-4 py-2 bg-slate-900 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                        </button>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Service 5: Unused Baccalaureate -->
-                <div class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800" data-category="registration">
+                <!-- Service 5: Unused Baccalaureate (Lien cliquable) -->
+                <a href="https://ucbet36.github.io/bac/" target="_blank" class="service-card group glass-panel rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 cursor-pointer block" data-category="registration">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
@@ -380,17 +365,17 @@
                     </div>
                     <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                         <span class="text-[11px] font-semibold text-slate-400"><i class="fa-solid fa-certificate ml-1"></i> مطابقة المعدل الأدنى</span>
-                        <button onclick="openModal('unused-bac')" class="px-4 py-2 bg-slate-900 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                        <span class="px-4 py-2 bg-slate-900 group-hover:bg-brand-600 dark:bg-brand-600 dark:group-hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                             <span>تقديم الطلب</span>
                             <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                        </button>
+                        </span>
                     </div>
-                </div>
+                </a>
 
             </div>
         </section>
 
-        <!-- Application Tracking System Section (متابعة الطلبات مع تحديد الخدمة) -->
+        <!-- Application Tracking System Section -->
         <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 space-y-6">
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-5">
                 <div>
@@ -398,25 +383,21 @@
                         <i class="fa-solid fa-list-check text-gold-500"></i>
                         متابعة حالة الطلبات (نظام الاستعلام المباشر)
                     </h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة وأدخل الرقم المرجعي لمتابعة حالة معالجة ملفك</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر الخدمة المطلوبة وأدخل الرقم المرجعي أو رقم التسجيل لمتابعة حالة معالجة ملفك</p>
                 </div>
 
-                <!-- Tracker Input Form with Service Selector -->
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-xl w-full">
-                    <!-- Service Select Dropdown -->
                     <select id="trackServiceSelect" class="px-3.5 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                        <option value="academic-leave">طلب عطلة أكاديمية</option>
+                        <option value="conge">طلب عطلة أكاديمية</option>
                         <option value="reintegration">طلب إعادة الإدماج</option>
-                        <option value="master-registration">التسجيل في الماستر</option>
-                        <option value="cancel-registration">إلغاء التسجيل</option>
-                        <option value="unused-bac">تسجيل بباكالوريا غير مستعملة</option>
+                        <option value="master">التسجيل في الماستر</option>
+                        <option value="cancel">إلغاء التسجيل</option>
+                        <option value="bac">تسجيل بباكالوريا غير مستعملة</option>
                     </select>
 
-                    <!-- Tracker Reference ID Input -->
-                    <input type="text" id="trackInput" placeholder="مثال: REQ-2026-8942" 
+                    <input type="text" id="trackInput" placeholder="رقم التسجيل / الرقم المرجعي" 
                         class="flex-1 px-4 py-2.5 bg-slate-100 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm uppercase focus:outline-none focus:ring-2 focus:ring-brand-500">
                     
-                    <!-- Search Button -->
                     <button onclick="searchRequest()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition shadow-md whitespace-nowrap flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
                         <span>استعلام</span>
@@ -424,55 +405,49 @@
                 </div>
             </div>
 
-            <!-- Visual Status Stepper Component -->
+            <!-- Dynamic Tracking Result -->
             <div id="trackingResult" class="p-6 bg-slate-50/80 dark:bg-navy-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 space-y-6">
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div>
                         <span class="text-xs font-semibold text-slate-400 block">رقم الطلب المرجعي</span>
-                        <span id="resTrackId" class="text-lg font-black text-brand-700 dark:text-emerald-400 tracking-wider">REQ-2026-7821</span>
+                        <span id="resTrackId" class="text-lg font-black text-brand-700 dark:text-emerald-400 tracking-wider">---</span>
                     </div>
                     <div>
                         <span class="text-xs font-semibold text-slate-400 block">نوع الخدمة المحددة</span>
-                        <span id="resServiceType" class="text-sm font-bold text-slate-800 dark:text-slate-200">طلب عطلة أكاديمية</span>
+                        <span id="resServiceType" class="text-sm font-bold text-slate-800 dark:text-slate-200">اختر خدمة واستعلم</span>
                     </div>
                     <div>
-                        <span class="text-xs font-semibold text-slate-400 block">تاريخ الإيداع الرقمي</span>
-                        <span id="resDate" class="text-sm font-medium text-slate-600 dark:text-slate-300">18 أكتوبر 2026</span>
+                        <span class="text-xs font-semibold text-slate-400 block">تاريخ / حالة الطلب</span>
+                        <span id="resDate" class="text-sm font-medium text-slate-600 dark:text-slate-300">---</span>
                     </div>
                 </div>
 
-                <!-- Progress Bar / Stepper -->
                 <div class="pt-4 pb-2">
-                    <div class="relative flex items-center justify-between max-w-3xl mx-auto">
-                        <!-- Line behind icons -->
+                    <div id="stepperContainer" class="relative flex items-center justify-between max-w-3xl mx-auto opacity-50">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-200 dark:bg-slate-700 z-0"></div>
-                        <div id="progressFill" class="absolute right-0 top-1/2 -translate-y-1/2 h-1 bg-brand-600 transition-all duration-500 z-0" style="width: 50%;"></div>
+                        <div id="progressFill" class="absolute right-0 top-1/2 -translate-y-1/2 h-1 bg-brand-600 transition-all duration-500 z-0" style="width: 0%;"></div>
 
-                        <!-- Step 1 -->
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">
-                                <i class="fa-solid fa-check"></i>
+                            <div class="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">
+                                1
                             </div>
-                            <span class="text-xs font-bold text-brand-600 dark:text-emerald-400">إيداع الملف</span>
+                            <span class="text-xs font-bold text-slate-500">إيداع الملف</span>
                         </div>
 
-                        <!-- Step 2 -->
                         <div class="relative z-10 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-white dark:ring-navy-900">
-                                <i class="fa-solid fa-spinner fa-spin"></i>
+                            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
+                                2
                             </div>
-                            <span class="text-xs font-bold text-brand-600 dark:text-emerald-400">قيد الدراسة البيداغوجية</span>
+                            <span class="text-xs font-semibold text-slate-400">قيد الدراسة</span>
                         </div>
 
-                        <!-- Step 3 -->
                         <div class="relative z-10 flex flex-col items-center gap-2">
                             <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
                                 3
                             </div>
-                            <span class="text-xs font-semibold text-slate-400">موافقة اللجنة المعنية</span>
+                            <span class="text-xs font-semibold text-slate-400">موافقة اللجنة</span>
                         </div>
 
-                        <!-- Step 4 -->
                         <div class="relative z-10 flex flex-col items-center gap-2">
                             <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm ring-4 ring-white dark:ring-navy-900">
                                 4
@@ -549,102 +524,10 @@
 
     </main>
 
-    <!-- Shared Dynamic Modal Form -->
-    <div id="serviceModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="glass-panel w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 space-y-6 my-8 animate-in zoom-in-95 duration-200">
-            
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
-                <div class="flex items-center gap-3">
-                    <div id="modalIcon" class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-file-pen"></i>
-                    </div>
-                    <div>
-                        <h3 id="modalTitle" class="text-lg font-bold text-slate-900 dark:text-white">استمارة تقديم الطلب</h3>
-                        <p class="text-xs text-slate-400">جامعة الشهيد بن جديد - الطارف</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-rose-500 hover:text-white transition flex items-center justify-center">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <!-- Modal Form Body -->
-            <form id="serviceForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                <input type="hidden" id="serviceTypeInput">
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Student ID -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">رقم التسجيل (البكالوريا)</label>
-                        <input type="text" required placeholder="أدخل رقم التسجيل" class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    </div>
-
-                    <!-- Full Name -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">الاسم واللقب الكامل</label>
-                        <input type="text" required placeholder="الاسم واللقب باللغة العربية" class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Faculty -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">الكلية / المعهد</label>
-                        <select required class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                            <option value="">اختر الكلية...</option>
-                            <option value="vet">قسم العلوم البيطرية</option>
-                            <option value="sciences">كلية العلوم والتكنولوجيا</option>
-                            <option value="nature">كلية علوم الطبيعة والحياة</option>
-                            <option value="letters">كلية الآداب واللغات</option>
-                            <option value="law">كلية الحقوق والعلوم السياسية</option>
-                            <option value="economics">كلية العلوم الاقتصادية والتجارية</option>
-                        </select>
-                    </div>
-
-                    <!-- Academic Year -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">السنة الجامعية الحالية</label>
-                        <input type="text" readonly value="2026 / 2027" class="w-full px-3.5 py-2.5 bg-slate-200/60 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300">
-                    </div>
-                </div>
-
-                <!-- Dynamic Reason Input -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">سبب الطلب / الشرح التفصيلي</label>
-                    <textarea rows="3" required placeholder="اكتب أسباب تقدمك بهذا الطلب بوضوح..." class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-navy-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none resize-none"></textarea>
-                </div>
-
-                <!-- Document Drop Zone -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">إرفاق الوثائق والمبررات (PDF أو صور)</label>
-                    <div class="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-4 text-center hover:border-brand-500 transition cursor-pointer bg-slate-50/50 dark:bg-navy-900/40">
-                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-brand-600 dark:text-emerald-400 mb-2"></i>
-                        <p class="text-xs font-bold text-slate-700 dark:text-slate-300">اسحب الملفات هنا أو انقر للاختيار</p>
-                        <p class="text-[10px] text-slate-400 mt-1">الحجم الأقصى: 5 ميغابايت (.pdf, .jpg, .png)</p>
-                        <input type="file" multiple class="hidden" id="fileInput">
-                    </div>
-                </div>
-
-                <!-- Submit Buttons -->
-                <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80 dark:border-slate-800">
-                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition">
-                        إلغاء
-                    </button>
-                    <button type="submit" id="submitBtn" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white transition flex items-center gap-2 shadow-lg shadow-brand-600/30">
-                        <span>تأكيد وإرسال الطلب</span>
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="mt-auto bg-slate-900 text-slate-400 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
                 <div class="space-y-3">
                     <div class="flex items-center gap-2 text-white font-black text-xl">
                         <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
@@ -681,10 +564,8 @@
                         <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Footer Bottom Line with Rights & Developer Credit -->
             <div class="mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500 space-y-2">
                 <p>جميع الحقوق محفوظة © 2026 - بوابة إقرأ للخدمات الطلابية - جامعة الشهيد بن جديد الطارف</p>
                 <p class="text-[11px] text-slate-400">
@@ -694,16 +575,24 @@
         </div>
     </footer>
 
-    <!-- Interactive JavaScript App Logic -->
+    <!-- JavaScript App Logic & Google Sheets Integration -->
     <script>
-        // Set Arabic Date on Load
+        // Links to Google Spreadsheets CSV Exports
+        const sheetUrls = {
+            'conge': 'https://docs.google.com/spreadsheets/d/1mpCiXJcrkgAXh85fFsNHI4MLptXxFGSSymnoNtGafyA/export?format=csv',
+            'reintegration': 'https://docs.google.com/spreadsheets/d/1TAfgtauM30GAdakaEy2eLrrxFIadd97exZZazwPQ_0M/export?format=csv',
+            'master': 'https://docs.google.com/spreadsheets/d/14XNCAn-mHUpFZkFUXixJda2K9RwLrTXhFIT9a323D6M/export?format=csv',
+            'cancel': 'https://docs.google.com/spreadsheets/d/1zNE4onzEAAajxysp_Ttyb4BkqqpLaoAO4-X-z3Z8Xks/export?format=csv',
+            'bac': 'https://docs.google.com/spreadsheets/d/1SKMt6cVLAplhYXx-0dLIofAZPpasSqbDIZM9DLuagcI/export?format=csv'
+        };
+
+        // Set Date
         document.addEventListener('DOMContentLoaded', () => {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const today = new Date().toLocaleDateString('ar-DZ', options);
             document.getElementById('liveDate').innerText = today;
         });
 
-        // Theme Toggle (Dark/Light)
         function toggleDarkMode() {
             const html = document.documentElement;
             const icon = document.getElementById('themeIcon');
@@ -718,27 +607,19 @@
             }
         }
 
-        // Toggle Notifications Menu
         function toggleNotifications() {
-            const menu = document.getElementById('notificationsMenu');
-            menu.classList.toggle('hidden');
+            document.getElementById('notificationsMenu').classList.toggle('hidden');
         }
 
-        // Filter Services Live Search
         function filterServices() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.service-card');
             cards.forEach(card => {
                 const text = card.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = text.includes(query) ? 'flex' : 'none';
             });
         }
 
-        // Category Filter Pills
         function filterCategory(category) {
             const buttons = document.querySelectorAll('.category-btn');
             buttons.forEach(btn => {
@@ -748,87 +629,100 @@
 
             const cards = document.querySelectorAll('.service-card');
             cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'flex' : 'none';
             });
         }
 
-        // Modal Handlers
-        const serviceTitles = {
-            'academic-leave': 'طلب عطلة أكاديمية',
-            'reintegration': 'طلب إعادة الإدماج',
-            'master-registration': 'التسجيل في الماستر',
-            'cancel-registration': 'إلغاء التسجيل وسحب البكالوريا',
-            'unused-bac': 'التسجيل بباكالوريا غير مستعملة'
-        };
-
-        function openModal(serviceKey) {
-            const modal = document.getElementById('serviceModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const serviceTypeInput = document.getElementById('serviceTypeInput');
-            
-            modalTitle.innerText = serviceTitles[serviceKey] || 'تقديم طلب جديد';
-            serviceTypeInput.value = serviceTitles[serviceKey];
-            
-            modal.classList.remove('hidden');
+        // Parse CSV text
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            return lines.map(line => {
+                const values = [];
+                let insideQuotes = false;
+                let currentValue = '';
+                for (let char of line) {
+                    if (char === '"' && insideQuotes) {
+                        insideQuotes = false;
+                    } else if (char === '"' && !insideQuotes) {
+                        insideQuotes = true;
+                    } else if (char === ',' && !insideQuotes) {
+                        values.push(currentValue.trim());
+                        currentValue = '';
+                    } else {
+                        currentValue += char;
+                    }
+                }
+                values.push(currentValue.trim());
+                return values;
+            });
         }
 
-        function closeModal() {
-            document.getElementById('serviceModal').classList.add('hidden');
-        }
-
-        // Form Submit Simulation
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> جاري إرسال الطلب...`;
-
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                closeModal();
-
-                // Generate random tracking ID
-                const randomId = 'REQ-2026-' + Math.floor(1000 + Math.random() * 9000);
-                
-                showToast(`تم إرسال الطلب بنجاح! رقم المتابعة: ${randomId}`, 'success');
-                
-                // Set into Tracker UI
-                document.getElementById('resTrackId').innerText = randomId;
-                document.getElementById('resServiceType').innerText = document.getElementById('serviceTypeInput').value;
-                document.getElementById('trackInput').value = randomId;
-                
-                document.getElementById('serviceForm').reset();
-            }, 1200);
-        }
-
-        // Live Application Tracker Search Simulator with Selected Service
-        function searchRequest() {
+        // Live Application Search using CSV Fetch
+        async function searchRequest() {
             const trackVal = document.getElementById('trackInput').value.trim();
             const serviceSelect = document.getElementById('trackServiceSelect');
+            const selectedServiceKey = serviceSelect.value;
             const selectedServiceText = serviceSelect.options[serviceSelect.selectedIndex].text;
 
             if (!trackVal) {
-                showToast('يرجى إدخال رقم المتابعة المرجعي', 'error');
+                showToast('يرجى إدخال رقم التسجيل أو الرقم المرجعي', 'error');
                 return;
             }
 
-            showToast('جاري الاستعلام عن بيانات الطلب...', 'info');
-            
-            setTimeout(() => {
+            showToast('جاري الاتصال بالمرجع والتحقق من البيانات...', 'info');
+
+            try {
+                const csvUrl = sheetUrls[selectedServiceKey];
+                const response = await fetch(csvUrl);
+                
+                if (!response.ok) throw new Error('Network error');
+
+                const csvText = await response.text();
+                const rows = parseCSV(csvText);
+
+                let found = false;
+                let rowData = null;
+
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row.some(cell => cell.toLowerCase().includes(trackVal.toLowerCase()))) {
+                        found = true;
+                        rowData = row;
+                        break;
+                    }
+                }
+
                 document.getElementById('resTrackId').innerText = trackVal.toUpperCase();
                 document.getElementById('resServiceType').innerText = selectedServiceText;
-                showToast(`تم العثور على حالة الطلب لـ (${selectedServiceText})`, 'success');
-            }, 600);
+                const stepper = document.getElementById('stepperContainer');
+                const progressFill = document.getElementById('progressFill');
+
+                if (found) {
+                    showToast(`تم العثور على ملفك في خدمة (${selectedServiceText})`, 'success');
+                    
+                    const statusText = rowData[rowData.length - 1] || 'قيد الدراسة البيداغوجية';
+                    document.getElementById('resDate').innerText = statusText;
+
+                    stepper.classList.remove('opacity-50');
+                    if (statusText.includes('مقبول') || statusText.includes('جاهز') || statusText.includes('تم')) {
+                        progressFill.style.width = '100%';
+                    } else if (statusText.includes('موافقة')) {
+                        progressFill.style.width = '66%';
+                    } else {
+                        progressFill.style.width = '33%';
+                    }
+                } else {
+                    showToast(`لم يتم العثور على نتائج مطابقة لـ (${trackVal}) في هذه الخدمة`, 'error');
+                    document.getElementById('resDate').innerText = 'غير مسجل أو قيد المعالجة الأولية';
+                    stepper.classList.add('opacity-50');
+                    progressFill.style.width = '0%';
+                }
+
+            } catch (error) {
+                showToast('تعذر الاتصال بقاعدة البيانات حالياً. يرجى المحاولة لاحقاً.', 'error');
+            }
         }
 
-        // Dynamic Toast Notification System
         function showToast(message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -837,7 +731,7 @@
             if (type === 'success') iconClass = 'fa-circle-check text-emerald-500';
             if (type === 'error') iconClass = 'fa-circle-exclamation text-rose-500';
 
-            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl text-xs font-bold text-slate-800 dark:text-slate-200 animate-in fade-in slide-in-from-top-4 duration-300`;
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl text-xs font-bold text-slate-800 dark:text-slate-200 transition duration-300`;
             toast.innerHTML = `
                 <i class="fa-solid ${iconClass} text-base"></i>
                 <span class="flex-1">${message}</span>
@@ -846,7 +740,7 @@
             container.appendChild(toast);
 
             setTimeout(() => {
-                toast.classList.add('opacity-0', 'transition-opacity');
+                toast.classList.add('opacity-0');
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
